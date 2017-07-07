@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 
+// This controller uses field injection instead of constructor injection
+
 @RestController
 @RequestMapping("/pets")
 class PetController {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/customers")
 class CustomerController(val customerRepository: CustomerRepository) {
 
-    // The need to use arrayOf() in annotations is Kotlin's fault - acknowledged to be fixed soon
+    // The need to use arrayOf() in annotations is annoying, but at least we can ommit it in default value
 
     @RequestMapping(
             value = "/{id}",

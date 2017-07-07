@@ -5,6 +5,8 @@ import com.github.rskupnik.repositories.PetRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.{RequestBody, RequestMapping, RequestMethod, RestController}
 
+// This controller uses field injection
+
 @RestController
 @RequestMapping(Array("/pets"))
 class PetController {
