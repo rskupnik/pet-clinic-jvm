@@ -1,0 +1,22 @@
+{
+  "AttachStdin" : true,
+  "OpenStdin" : true,
+  "Env" : [ "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,address=34526,suspend=n,server=y" ],
+  "Image" : "",
+  "Volumes" : { },
+  "ExposedPorts" : { },
+  "HostConfig" : {
+    "Binds" : [ ],
+    "PortBindings" : {
+      "34526/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "34526"
+      } ],
+      "8080/tcp" : [ {
+        "HostIp" : "",
+        "HostPort" : "8080"
+      } ]
+    }
+  },
+  "_comment" : ""
+}
