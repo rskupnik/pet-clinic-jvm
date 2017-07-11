@@ -2,6 +2,8 @@ package com.github.rskupnik.controllers
 
 import java.{lang, util}
 
+import scala.collection.JavaConverters._
+
 import com.github.rskupnik.model.Customer
 import com.github.rskupnik.repositories.CustomerRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -35,13 +37,12 @@ class CustomerController @Autowired() (private val customerRepository: CustomerR
     produces = Array("application/json")
   )
   def getAllCustomersFormatted() = {
-    // This can probably be done much better, blame my low Scala skills
-    val output: java.util.List[String] = new util.ArrayList[String]()
-    val customers: java.util.Iterator[Customer] = customerRepository.findAll().iterator()
-    while (customers.hasNext) {
-      output.add(customers.next().toString())
-    }
-    output
+    // Use JavaConverters to move between Scala and Java collections.
+    customerRepository
+      .findAll()
+      .asScala
+      .map(_.toString())
+      .asJava
   }
 
   @RequestMapping(
