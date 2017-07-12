@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation._
 
 @RestController
 @RequestMapping(Array("/customers"))
-class CustomerController @Autowired() (
+class CustomerController (
   private val customerRepository: CustomerRepository
 ) {
 
