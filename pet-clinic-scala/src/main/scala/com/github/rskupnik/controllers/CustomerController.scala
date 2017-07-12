@@ -20,24 +20,13 @@ class CustomerController (
 
   // Have to use arrays in annotations, which is a pain
 
-  @RequestMapping(
-    value = Array("/{id}"),
-    method = Array(RequestMethod.GET),
-    produces = Array("application/json")
-  )
+  @GetMapping(value = Array("/{id}"), produces = Array("application/json"))
   def getCustomer(@PathVariable("id") id: Long) = customerRepository.findOne(id)
 
-  @RequestMapping(
-    method = Array(RequestMethod.GET),
-    produces = Array("application/json")
-  )
+  @GetMapping(produces = Array("application/json"))
   def getAllCustomers() = customerRepository.findAll()
 
-  @RequestMapping(
-    value = Array("/formatted"),
-    method = Array(RequestMethod.GET),
-    produces = Array("application/json")
-  )
+  @GetMapping(value = Array("/formatted"), produces = Array("application/json"))
   def getAllCustomersFormatted() = {
     // Use JavaConverters to move between Scala and Java collections.
     customerRepository
@@ -47,10 +36,6 @@ class CustomerController (
       .asJava
   }
 
-  @RequestMapping(
-    method = Array(RequestMethod.POST),
-    consumes = Array("application/json"),
-    produces = Array("application/json")
-  )
+  @PostMapping(produces = Array("application/json"), consumes = Array("application/json"))
   def addCustomer(@RequestBody customer: Customer) = customerRepository.save(customer)
 }

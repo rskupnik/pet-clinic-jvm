@@ -19,28 +19,17 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-    @RequestMapping(
-            value = "/{id}",
-            method = RequestMethod.GET,
-            produces = "application/json"
-    )
+    @GetMapping(value = "/{id}", produces = "application/json")
     public Customer getCustomer(@PathVariable("id") Long id) {
         return customerRepository.findOne(id);
     }
 
-    @RequestMapping(
-            method = RequestMethod.GET,
-            produces = "application/json"
-    )
+    @GetMapping(produces = "application/json")
     public List<Customer> getAllCustomers() {
         return (List<Customer>) customerRepository.findAll();
     }
 
-    @RequestMapping(
-            value = "/formatted",
-            method = RequestMethod.GET,
-            produces = "application/json"
-    )
+    @GetMapping(value = "/formatted", produces = "application/json")
     public List<String> getAllCustomersFormatted() {
         return ((List<Customer>) customerRepository.findAll())
                 .stream()
@@ -50,11 +39,7 @@ public class CustomerController {
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(
-            method = RequestMethod.POST,
-            consumes = "application/json",
-            produces = "application/json"
-    )
+    @PostMapping(produces = "application/json", consumes = "application/json")
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerRepository.save(customer);
     }
