@@ -16,14 +16,16 @@ class CustomerController(val customerRepository: CustomerRepository) {
             method = arrayOf(RequestMethod.GET),
             produces = arrayOf("application/json")
     )
-    fun getCustomer(@PathVariable("id") id: Long): Customer? = customerRepository.findOne(id)
+    fun getCustomer(@PathVariable("id") id: Long): Customer? =
+            customerRepository.findOne(id)
 
     @RequestMapping(
             value = "/formatted",
             method = arrayOf(RequestMethod.GET),
             produces = arrayOf("application/json")
     )
-    fun getAllCustomersFormatted() = customerRepository.findAll().map { it.toString() }
+    fun getAllCustomersFormatted() =
+            customerRepository.findAll().map { it.toString() }
 
     @RequestMapping(
             method = arrayOf(RequestMethod.GET),
@@ -36,5 +38,6 @@ class CustomerController(val customerRepository: CustomerRepository) {
             produces = arrayOf("application/json"),
             consumes = arrayOf("application/json")
     )
-    fun addCustomer(@RequestBody customer: Customer): Customer? = customerRepository.save(customer)
+    fun addCustomer(@RequestBody customer: Customer): Customer? =
+            customerRepository.save(customer)
 }

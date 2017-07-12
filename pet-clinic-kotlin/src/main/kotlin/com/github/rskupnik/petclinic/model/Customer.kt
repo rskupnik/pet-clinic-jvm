@@ -9,12 +9,14 @@ import javax.persistence.*
 // 2. Entity classes need a default constructor - one is provided here by giving all the arguments a default value
 @Entity
 data class Customer(
-        @Id @GeneratedValue(strategy = GenerationType.AUTO) var id: Long = 0,
+        @Id @GeneratedValue(strategy = GenerationType.AUTO)
+        var id: Long = 0,
+
         var firstName: String = "",
         var lastName: String = "",
-        // Use JsonIgnore to avoid circular mapping
-        @JsonIgnore @OneToMany(mappedBy = "owner") var pets: List<Pet>? = null
+
+        @JsonIgnore @OneToMany(mappedBy = "owner")
+        var pets: List<Pet>? = null
 ) {
-    // Can ommit this if you specify class as data class and the default toString it provides suits you
     override fun toString(): String = "$firstName $lastName"
 }

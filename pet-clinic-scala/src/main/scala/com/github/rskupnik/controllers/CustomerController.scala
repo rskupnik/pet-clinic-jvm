@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation._
 
 @RestController
 @RequestMapping(Array("/customers"))
-class CustomerController @Autowired() (private val customerRepository: CustomerRepository) {
+class CustomerController @Autowired() (
+  private val customerRepository: CustomerRepository
+) {
 
   // Have to use arrays in annotations, which is a pain
 

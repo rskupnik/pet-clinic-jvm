@@ -42,7 +42,12 @@ public class CustomerController {
             produces = "application/json"
     )
     public List<String> getAllCustomersFormatted() {
-        return ((List<Customer>) customerRepository.findAll()).stream().map(customer -> customer.getFirstName()+" "+customer.getLastName()).collect(Collectors.toList());
+        return ((List<Customer>) customerRepository.findAll())
+                .stream()
+                .map(
+                    customer -> customer.getFirstName()+" "+customer.getLastName()
+                )
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(
