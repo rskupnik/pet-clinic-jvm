@@ -19,7 +19,7 @@ public class PetController {
         return (List<Pet>) petRepository.findAll();
     }
 
-    @PostMapping(produces = "application/json")
+    @PostMapping(produces = "application/json", consumes = "application/json")
     public Pet addPet(@RequestBody Pet pet) {
         return petRepository.save(pet);
     }
