@@ -2,27 +2,28 @@ package com.github.rskupnik.model
 
 import javax.persistence._
 
+import scala.annotation.meta.field
 import scala.beans.BeanProperty
 
 @Entity
-class Pet {
+case class Pet(
+                @(Id@field)
+                @(GeneratedValue@field)
+                @BeanProperty
+                var id: Long,
+                @BeanProperty
+                var name: String) {
 
-  def this(name: String, owner: Customer) {
-    this()
-    this.name = name
-    this.owner = owner
+  // Need to specify an empty constructor
+  def this() {
+    this(0, "")
   }
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @BeanProperty
-  var id: Long = _
-
-  @BeanProperty
-  var name: String = _
 
   @ManyToOne
   @JoinColumn(name = "ownerId", nullable = false)
   @BeanProperty
   var owner: Customer = _
+
+  override def toString: String = name
+
 }

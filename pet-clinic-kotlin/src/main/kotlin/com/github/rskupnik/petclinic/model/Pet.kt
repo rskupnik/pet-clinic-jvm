@@ -17,7 +17,7 @@ class Pet {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     var id: Long = 0
 
     var name: String = ""

@@ -9,7 +9,7 @@ import javax.persistence.*
 // 2. Entity classes need a default constructor - one is provided here by giving all the arguments a default value
 @Entity
 data class Customer(
-        @Id @GeneratedValue(strategy = GenerationType.AUTO)
+        @Id @GeneratedValue
         var id: Long = 0,
 
         var firstName: String = "",

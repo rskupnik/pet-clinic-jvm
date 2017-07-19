@@ -4,35 +4,32 @@ import javax.persistence._
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
+import scala.annotation.meta.field
 import scala.beans.BeanProperty
 
+// BeanProperty needed to generate getters and setters
+
 @Entity
-class Customer {
+case class Customer(
+                     @(Id@field)
+                     @(GeneratedValue@field)
+                     @BeanProperty
+                     var id: Long,
+                     @BeanProperty
+                     var firstName: String,
+                     @BeanProperty
+                     var lastName: String) {
 
-  // Need to specify a parameterized constructor explicitly
-  def this(firstName: String, lastName: String) {
-    this()
-    this.firstName = firstName
-    this.lastName = lastName
+  // Need to specify an empty constructor
+  def this() {
+    this(0, "", "")
   }
-
-  // BeanProperty needed to generate getters and setters
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @BeanProperty
-  var id: Long = _
-
-  @BeanProperty
-  var firstName: String = _
-
-  @BeanProperty
-  var lastName: String = _
 
   @JsonIgnore
   @OneToMany(mappedBy = "owner")
   @BeanProperty
   var pets: java.util.List[Pet] = _
 
-  override def toString(): String = s"$firstName $lastName"
+  override def toString: String = s"$firstName $lastName"
+
 }
